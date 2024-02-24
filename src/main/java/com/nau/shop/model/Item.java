@@ -25,4 +25,5 @@ public class Item {
     private Double price;
     @Min(0)
     private Long quantity;
+    private Category category;
 }
