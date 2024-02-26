@@ -1,7 +1,7 @@
 package com.nau.shop.service;
 
-import com.nau.shop.model.AuthBody;
-import com.nau.shop.model.RegisterBody;
+import com.nau.shop.dto.AuthBody;
+import com.nau.shop.dto.RegisterBody;
 import com.nau.shop.model.Role;
 import com.nau.shop.model.User;
 import com.nau.shop.repository.UserRepository;

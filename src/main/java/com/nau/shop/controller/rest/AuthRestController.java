@@ -1,6 +1,6 @@
 package com.nau.shop.controller.rest;
 
-import com.nau.shop.model.RegisterBody;
+import com.nau.shop.dto.RegisterBody;
 import com.nau.shop.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
