@@ -1,4 +1,4 @@
-package com.nau.shop.model;
+package com.nau.shop.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
