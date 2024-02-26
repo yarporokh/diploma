@@ -22,9 +22,6 @@ import java.util.Collections;
 @Table(name = "users")
 @SuperBuilder
 public class User extends BaseEntity implements UserDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String firstname;
     private String lastname;
     @Email
