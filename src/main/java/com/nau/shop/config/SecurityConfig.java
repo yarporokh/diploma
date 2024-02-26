@@ -19,7 +19,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         auth -> auth
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("auth/**").permitAll()
+                                .requestMatchers("auth/**", "api/**").permitAll()
                 );
 
         return http.build();
