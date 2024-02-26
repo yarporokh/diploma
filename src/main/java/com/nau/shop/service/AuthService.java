@@ -18,7 +18,7 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
 
-    public void registerNewUser(RegisterBody registerBody) {
+    public boolean registerNewUser(RegisterBody registerBody) {
         if (userRepository.findByEmail(registerBody.getEmail()).isEmpty()) {
             User user = User.builder()
                     .firstname(registerBody.getFirstname())
@@ -30,9 +30,9 @@ public class AuthService {
                     .build();
 
             userRepository.save(user);
-            return;
+            return true;
         }
-        throw new RuntimeException();
+        return false;
     }
 
     public void authenticate(AuthBody authBody) {
