@@ -10,7 +10,7 @@ public class AuthController {
 
     @GetMapping("/registration")
     public String registerPage() {
-        return "registration";
+        return "main";
     }
 
     @GetMapping("/login")

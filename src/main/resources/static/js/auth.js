@@ -15,6 +15,17 @@ function registerNewUser() {
     let password = document.getElementById("password").value
     let phone = document.getElementById("phone").value
 
+    let phoneRegex = /^0\d{9}$/
+
+    if (firstname === ""
+        || lastname === ""
+        || email === ""
+        || password === ""
+        || phone === ""
+        || !phoneRegex.test(phone)) {
+        return
+    }
+
     let requestBody = {
         firstname: firstname,
         lastname: lastname,
