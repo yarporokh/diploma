@@ -23,7 +23,7 @@
                 <a class="nav-link" href="#">Шото2</a>
             </li>
             <li class="nav-item">
-                <button onclick="btnOpenModal()" data-toggle="modal" class="btn btn-link nav-link" data-target="#registerModal">Зареєструватися</button>
+                <button data-toggle="modal" class="btn btn-link nav-link" data-target="#registerModal">Зареєструватися</button>
         </ul>
 
     </div>
@@ -57,13 +57,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Реєстрація</h5>
+                    <h5 class="modal-title" id="registerModalLabel">Реєстрація</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form th:object="${registerBody}" th:action="@{/auth/registration}" method="post">
                         <label for="firstname">Ім'я</label>
                         <input type="text" required id="firstname" name="firstname" />
                         <br>
@@ -71,7 +71,7 @@
                         <input type="text" required id="lastname" name="lastname" />
                         <br>
                         <label for="phone">Номер телефону</label>
-                        <input type="text" pattern="^(\+380\d{2,3})?\d{7}$" required id="phone" name="phone" />
+                        <input type="text" required id="phone" name="phone" />
                         <br>
                         <label for="email">Електронна пошта</label>
                         <input type="email" required id="email" name="email"/>
@@ -82,12 +82,51 @@
                         <div id="err"></div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
-                            <button type="submit" class="btn btn-primary" onclick="registerNewUser()">Зареєструватися</button>
+                            <button type="submit" class="btn btn-primary">Зареєструватися</button>
                         </div>
                     </form>
+                    <button onclick="openLoginModal()" data-toggle="modal" class="btn btn-link nav-link" data-target="#loginModal">Авторизуватись</button>
                 </div>
 
             </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Авторизація</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/auth/login">
+                        <label for="email">Електронна пошта</label>
+                        <input type="email" required id="logEmail" name="logEmail"/>
+                        <br>
+                        <label for="password">Пароль</label>
+                        <input type="password" required id="logPassword" name="logPassword" />
+                        <br>
+                        <div id="logerr"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+                            <button type="submit" class="btn btn-primary">Авторизуватись</button>
+                        </div>
+                    </form>
+                    <button onclick="openRegisterModal()" data-toggle="modal" class="btn btn-link nav-link" data-target="#registerModal">Зареєструватися</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${isNew != null}">
+        <div th:if="${isNew}">
+            <p>Welcome to our website! Please proceed with your registration.</p>
+        </div>
+        <div th:unless="${isNew}">
+            <p>User is already registered.</p>
         </div>
     </div>
 </nav>

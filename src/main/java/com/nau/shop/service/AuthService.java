@@ -44,10 +44,10 @@ public class AuthService {
         return false;
     }
 
-    public void authenticate(AuthBody authBody) {
+    public void authenticate(String email, String password) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        authBody.getEmail(), authBody.getPassword()
+                        email, password
                 )
         );
     }

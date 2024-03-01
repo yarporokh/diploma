@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 public class AuthBody {
-    private String email;
-    private String password;
+    private String logEmail;
+    private String logPassword;
 }
