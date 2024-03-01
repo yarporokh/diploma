@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">SHOP</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <h1 sec:authorize="hasAuthority('USER')">USER</h1>
+        <h1 sec:authorize="hasAuthority('ADMIN')">USER</h1>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Шото1</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Шото2</a>
+            </li>
+            <li class="nav-item">
+                <button onclick="btnOpenModal()" data-toggle="modal" class="btn btn-link nav-link" data-target="#registerModal">Зареєструватися</button>
+        </ul>
+
+    </div>
+
+    <!--<dialog class="modal" id="modal">
+        <button onclick="btnCloseModal()">Close</button>
+        <h2>Registration</h2>
+        <form>
+        <label for="firstname">Firstname</label>
+        <input type="text" required id="firstname" name="firstname" />
+        <br>
+        <label for="lastname">Lastname</label>
+        <input type="text" required id="lastname" name="lastname" />
+        <br>
+        <label for="phone">Phone</label>
+        <input type="text" pattern="^(\+380\d{2,3})?\d{7}$" required id="phone" name="phone" />
+        <br>
+        <label for="email">Email</label>
+        <input type="email" required id="email" name="email"/>
+        <br>
+        <label for="password">Password</label>
+        <input type="password" required id="password" name="password" />
+        <br>
+        <div id="err"></div>
+            <button type="submit" onclick="registerNewUser()">SUBMIT SUBMIT</button>
+        </form>
+        <button onclick="registerNewUser()">SUBMIT</button>
+    </dialog>-->
+
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Реєстрація</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <label for="firstname">Ім'я</label>
+                        <input type="text" required id="firstname" name="firstname" />
+                        <br>
+                        <label for="lastname">Прізвище</label>
+                        <input type="text" required id="lastname" name="lastname" />
+                        <br>
+                        <label for="phone">Номер телефону</label>
+                        <input type="text" pattern="^(\+380\d{2,3})?\d{7}$" required id="phone" name="phone" />
+                        <br>
+                        <label for="email">Електронна пошта</label>
+                        <input type="email" required id="email" name="email"/>
+                        <br>
+                        <label for="password">Пароль</label>
+                        <input type="password" required id="password" name="password" />
+                        <br>
+                        <div id="err"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+                            <button type="submit" class="btn btn-primary" onclick="registerNewUser()">Зареєструватися</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
