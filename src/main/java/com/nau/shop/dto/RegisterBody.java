@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class RegisterBody {
     private String email;
-    private String password;
+    private String regPassword;
     private String firstname;
     private String lastname;
     private String phone;
