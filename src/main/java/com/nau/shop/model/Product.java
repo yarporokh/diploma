@@ -5,13 +5,11 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 
 @Entity
-@Table(name = "Product", indexes = {
+/*@Table(name = "Product", indexes = {
         @Index(name = "idx_product_category", columnList = "category")
-})
+})*/
 @Data
 @NoArgsConstructor
-@Getter
-@Setter
 @AllArgsConstructor
 @Builder
 public class Product {
@@ -26,5 +24,7 @@ public class Product {
     private Category category;
     @PositiveOrZero
     private Integer quantity;
-    //private String brand;
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
 }
