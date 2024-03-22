@@ -7,6 +7,7 @@ function getAll() {
         .then(response => response.json())
         .then(data => {
             const table = document.getElementById("table");
+            table.innerHTML = ''
             data.map(product => {
                 table.innerHTML += buildRow(product)
             })
@@ -18,13 +19,13 @@ function getAll() {
 
 function buildRow(product) {
     return `<tr id="${product.id}">
-<th scope="row">${product.id}</th>
-<td>${product.name}</td>
-<td>${product.description.substring(0, 11) + '...'}</td>
-<td>${product.category}</td>
-<td>${product.price}</td>
-<td>${product.quantity}</td>
-</tr>`
+        <th scope="row">${product.id}</th>
+        <td>${product.name}</td>
+        <td>${product.description.substring(0, 11) + '...'}</td>
+        <td>${product.category}</td>
+        <td>${product.price}</td>
+        <td>${product.quantity}</td>
+        </tr>`
 }
 
 function addNewProduct() {
@@ -71,6 +72,8 @@ function addNewProduct() {
             htmldescription.value = ''
             htmlprice.value = ''
             htmlquantity.value = ''
+            htmlcategory.value = ''
             $('#addProductModal').modal('hide');
+            getAll()
         })
 }
