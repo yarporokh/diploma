@@ -28,3 +28,47 @@ function buildCard(id, name, description, price, category, quantity) {
                             </div>
                         </div>`
 }
+
+function addNewProduct() {
+    let htmlname = document.getElementById("name")
+    let htmldescription = document.getElementById("description")
+    let htmlprice = document.getElementById("price")
+    let htmlquantity = document.getElementById("quantity")
+
+    let name = htmlname.value
+    let description = htmldescription.value
+    let price = htmlprice.value
+    let quantity = htmlquantity.value
+
+    if (
+        name === "" ||
+        description === "" ||
+        price === "" ||
+        quantity === "") {
+        return;
+    }
+
+    const reqBody = {
+        name: name,
+        description: description,
+        price: price,
+        quantity: quantity
+    }
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reqBody)
+    }
+
+    fetch(apiUrl, requestOptions)
+        .then(() => {
+            htmlname.value = ''
+            htmldescription.value = ''
+            htmlprice.value = ''
+            htmlquantity.value = ''
+            $('#addProductModal').modal('hide');
+        })
+}

@@ -18,6 +18,6 @@ public class Brand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "brand")
-    private List<Product> products;
+/*    @OneToMany(mappedBy = "brand")
+    private List<Product> products;*/
 }

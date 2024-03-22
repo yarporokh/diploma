@@ -20,11 +20,11 @@ public class Product {
     private String description;
     @PositiveOrZero
     private Double price;
-    @Enumerated(EnumType.STRING)
-    private Category category;
+//    @Enumerated(EnumType.STRING)
+//    private Category category;
     @PositiveOrZero
     private Integer quantity;
-    @ManyToOne
+/*    @ManyToOne
     @JoinColumn(name = "brand_id")
-    private Brand brand;
+    private Brand brand;*/
 }

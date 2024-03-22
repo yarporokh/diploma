@@ -24,14 +24,14 @@ public class ProductRestController {
         return productService.findById(id);
     }
 
-    @GetMapping("/category/{category}")
+/*    @GetMapping("/category/{category}")
     public List<Product> getByCategory(@PathVariable("category") Category category) {
         return productService.findByCategory(category);
-    }
+    }*/
 
     @PostMapping
-    public void addNewProduct() {
-
+    public void addNewProduct(@RequestBody Product product) {
+        productService.save(product);
     }
 
 }

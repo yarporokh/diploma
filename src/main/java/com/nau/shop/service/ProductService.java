@@ -17,11 +17,15 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public List<Product> findByCategory(Category category) {
-        return productRepository.findProductByCategory(category);
-    }
+//    public List<Product> findByCategory(Category category) {
+//        return productRepository.findProductByCategory(category);
+//    }
 
     public Product findById(Long id) {
         return productRepository.findProductById(id);
+    }
+
+    public void save(Product product) {
+        productRepository.save(product);
     }
 }
