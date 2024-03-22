@@ -3,13 +3,14 @@ let apiUrl = 'http://localhost:8080/api/v1/product';
 
 getAll()
 
-
 function getAll() {
     fetch(apiUrl + '/all')
         .then(response => response.json())
         .then(data => {
-            const div = document.getElementById("main");
-            console.log(data);
+            const div = document.getElementById("row");
+            data.map(product => {
+                div.innerHTML += buildCard(product.id, product.name, product.description, product.price)
+            })
 
 
         })
@@ -17,7 +18,7 @@ function getAll() {
 
 }
 
-function buildCard(id, name, description, price, category, quantity) {
+function buildCard(id, name, description, price) {
     return `<div class="col-md-4" id="${id}">
                             <div class="card mb-4">
                                 <div class="card-body">
