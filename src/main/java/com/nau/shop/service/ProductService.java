@@ -1,9 +1,9 @@
 package com.nau.shop.service;
 
-import com.nau.shop.model.Category;
 import com.nau.shop.model.Product;
 import com.nau.shop.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +12,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
-
     public List<Product> findAll() {
-        return productRepository.findAll();
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return productRepository.findAll(sort);
     }
 
 //    public List<Product> findByCategory(Category category) {
