@@ -3,7 +3,7 @@ package com.nau.shop.model;
 import org.springframework.security.core.GrantedAuthority;
 
 public enum Role implements GrantedAuthority {
-    ADMIN, USER;
+    ADMIN, MANAGER, USER;
 
     @Override
     public String getAuthority() {
