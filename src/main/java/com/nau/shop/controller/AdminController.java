@@ -13,4 +13,9 @@ public class AdminController {
     public String adminProductsPage() {
         return "adminProducts";
     }
+
+    @GetMapping("staff")
+    public String adminStaffPage() {
+        return "adminStaff";
+    }
 }
