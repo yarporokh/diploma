@@ -9,6 +9,7 @@ function getAllStaff() {
             const table = document.getElementById("table");
             table.innerHTML = ''
             data.map(worker => {
+                console.log(worker)
                 table.innerHTML += buildRow(worker)
             })
         })
@@ -72,6 +73,9 @@ function addNewWorker() {
             htmlpassword.value = ''
             htmlrole.value = ''
             $('#addWorkerModal').modal('hide');
-            getAll()
+            getAllStaff()
+        })
+        .then(err => {
+            console.log("USER EXISTS")
         })
 }

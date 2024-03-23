@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 
 @Entity
 @Data
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Phone {
     @Id
-    private Long id;
+    private UUID id;
     @Column(unique = true)
     private String phone;
     @MapsId
