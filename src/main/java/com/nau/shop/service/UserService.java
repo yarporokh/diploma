@@ -39,4 +39,8 @@ public class UserService {
                 .build();
         userRepository.save(newWorker);
     }
+
+    public List<User> findALlWorkersWithFilter(String filter) {
+        return userRepository.findALlWorkersWithFilter(filter);
+    }
 }

@@ -19,6 +19,11 @@ public class UserRestController {
         return userService.findALlWorkers();
     }
 
+    @GetMapping("workers/{filter}")
+    public List<User> findALlWorkersWithFilter(@PathVariable("filter") String filter) {
+        return userService.findALlWorkersWithFilter(filter);
+    }
+
     @PostMapping
     public void saveNewWorker(@RequestBody WorkerRegisterBody body) {
         System.out.println(body);

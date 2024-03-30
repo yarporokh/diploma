@@ -82,3 +82,25 @@ function addNewWorker() {
             console.log("USER EXISTS")
         })
 }
+
+function findStaffByFilter() {
+    const htmlFilter = document.getElementById('staffFilter');
+    const filter = htmlFilter.value
+
+    if (filter === '') {
+        getAllStaff()
+    } else {
+        fetch(`${apiUrl}/workers/${filter}`)
+            .then(response => response.json())
+            .then(data => {
+                const table = document.getElementById("table");
+                table.innerHTML = ''
+                data.map(worker => {
+                    table.innerHTML += buildRow(worker)
+                })
+
+
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }
+}
