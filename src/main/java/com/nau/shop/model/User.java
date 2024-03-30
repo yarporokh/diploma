@@ -37,6 +37,7 @@ public class User implements UserDetails {
     private Role role;
     @CreatedDate
     private LocalDateTime createdDate;
+    private Boolean isEnabled;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -67,6 +68,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.isEnabled;
     }
 }

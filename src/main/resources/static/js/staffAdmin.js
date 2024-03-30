@@ -23,6 +23,7 @@ function buildRow(worker) {
         <td>${worker.lastname}</td>
         <td>${worker.email}</td>
         <td>${worker.role}</td>
+        <td>${worker.isEnabled}</td>
         </tr>`
 }
 

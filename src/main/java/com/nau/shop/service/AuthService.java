@@ -31,6 +31,7 @@ public class AuthService implements UserDetailsService {
                     .email(registerBody.getEmail())
                     .password(passwordEncoder.encode(registerBody.getRegPassword()))
                     .role(Role.USER)
+                    .isEnabled(true)
                     .build();
 
             User user = userRepository.save(newUser);

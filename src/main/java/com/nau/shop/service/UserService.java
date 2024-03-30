@@ -32,6 +32,7 @@ public class UserService {
                 .email(body.getEmail())
                 .password(passwordEncoder.encode(body.getPassword()))
                 .role(body.getRole())
+                .isEnabled(true)
                 .build();
         userRepository.save(newWorker);
     }
