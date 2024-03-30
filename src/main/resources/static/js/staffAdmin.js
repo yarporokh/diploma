@@ -17,13 +17,15 @@ function getAllStaff() {
 }
 
 function buildRow(worker) {
+    const status = worker.isEnabled ? 'Активний' : 'Відключений';
+
     return `<tr id="${worker.id}"">
         <th scope="row">${worker.id}</th>
         <td>${worker.firstname}</td>
         <td>${worker.lastname}</td>
         <td>${worker.email}</td>
         <td>${worker.role}</td>
-        <td>${worker.isEnabled}</td>
+        <td>${status}</td>
         </tr>`
 }
 
