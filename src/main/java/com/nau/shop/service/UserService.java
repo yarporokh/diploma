@@ -19,6 +19,10 @@ public class UserService {
         return userRepository.findALlWorkers();
     }
 
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
     public void saveNewWorker(WorkerRegisterBody body) {
         User user = userRepository.findByEmail(body.getEmail());
         if (user != null) {
