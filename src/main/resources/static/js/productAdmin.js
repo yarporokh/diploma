@@ -174,7 +174,7 @@ function editProduct(id) {
 }
 
 
-function findByFilter() {
+function findProductsByFilter() {
     const htmlFilter = document.getElementById('inputFilter');
     const filter = htmlFilter.value
 
