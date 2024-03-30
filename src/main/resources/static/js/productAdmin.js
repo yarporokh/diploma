@@ -20,11 +20,11 @@ function getAll() {
 function buildRow(product) {
     return `<tr id="${product.id}" data-toggle="modal" data-target="#productModal${product.id}">
         <th scope="row">${product.id}</th>
-        <td>${product.name}</td>
-        <td>${product.description.substring(0, 11) + '...'}</td>
-        <td>${product.category}</td>
-        <td>${product.price.toFixed(2)}</td>
-        <td>${product.quantity}</td>
+        <td id="name${product.id}">${product.name}</td>
+        <td id="description${product.id}">${product.description.substring(0, 11) + '...'}</td>
+        <td id="category${product.id}">${product.category}</td>
+        <td id="price${product.id}">${product.price.toFixed(2)}</td>
+        <td id="quantity${product.id}">${product.quantity}</td>
         </tr>
         
         <div class="modal fade" id="productModal${product.id}" tabindex="-1" role="dialog" aria-labelledby="productModal${product.id}"
@@ -136,12 +136,6 @@ function editProduct(id) {
     const quantity = htmlquantity.value
     const category = htmlcategory.value
 
-    console.log(name)
-    console.log(description)
-    console.log(price)
-    console.log(quantity)
-    console.log(category)
-
     if (
         name === "" ||
         description === "" ||
@@ -170,7 +164,11 @@ function editProduct(id) {
 
     fetch(apiUrl, requestOptions)
         .then(() => {
+            document.getElementById(`name${id}`).innerText = name
+            document.getElementById(`description${id}`).innerText = description.substring(0, 11) + '...'
+            document.getElementById(`category${id}`).innerText = category
+            document.getElementById(`price${id}`).innerText = price
+            document.getElementById(`quantity${id}`).innerText = quantity
             $(`#productModal${id}`).modal('hide');
-            getAll()
         })
 }
