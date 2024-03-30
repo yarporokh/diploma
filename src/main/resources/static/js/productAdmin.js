@@ -172,3 +172,26 @@ function editProduct(id) {
             $(`#productModal${id}`).modal('hide');
         })
 }
+
+
+function findByFilter() {
+    const htmlFilter = document.getElementById('inputFilter');
+    const filter = htmlFilter.value
+
+    if (filter === '') {
+        getAll()
+    } else {
+        fetch(`${apiUrl}/filter/${filter}`)
+            .then(response => response.json())
+            .then(data => {
+                const table = document.getElementById("table");
+                table.innerHTML = ''
+                data.map(product => {
+                    table.innerHTML += buildRow(product)
+                })
+
+
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }
+}

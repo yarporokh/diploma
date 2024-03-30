@@ -28,4 +28,8 @@ public class ProductService {
     public void save(Product product) {
         productRepository.save(product);
     }
+
+    public List<Product> findByFilter(String filter) {
+        return productRepository.findByFilter(filter);
+    }
 }

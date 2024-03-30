@@ -24,6 +24,11 @@ public class ProductRestController {
         return productService.findById(id);
     }
 
+    @GetMapping("/filter/{filter}")
+    public List<Product> getByFilter(@PathVariable("filter") String filter) {
+        return productService.findByFilter(filter);
+    }
+
 /*    @GetMapping("/category/{category}")
     public List<Product> getByCategory(@PathVariable("category") Category category) {
         return productService.findByCategory(category);
