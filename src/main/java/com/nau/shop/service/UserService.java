@@ -23,6 +23,16 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void saveEditedWorker(User worker) {
+        User user = userRepository.findByEmail(worker.getEmail());
+        user.setFirstname(worker.getFirstname());
+        user.setLastname(worker.getLastname());
+        user.setEmail(worker.getEmail());
+        user.setRole(worker.getRole());
+        user.setIsEnabled(worker.getIsEnabled());
+        userRepository.save(user);
+    }
+
     public void saveNewWorker(WorkerRegisterBody body) {
         User user = userRepository.findByEmail(body.getEmail());
         if (user != null) {

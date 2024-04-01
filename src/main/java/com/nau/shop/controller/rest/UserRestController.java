@@ -26,7 +26,11 @@ public class UserRestController {
 
     @PostMapping
     public void saveNewWorker(@RequestBody WorkerRegisterBody body) {
-        System.out.println(body);
         userService.saveNewWorker(body);
+    }
+
+    @PostMapping("save")
+    public void saveWorker(@RequestBody User user) {
+        userService.saveEditedWorker(user);
     }
 }
