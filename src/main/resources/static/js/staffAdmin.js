@@ -21,6 +21,7 @@ function getAllStaff() {
 
 function buildRow(worker) {
     const status = statues[worker.isEnabled];
+    const role = roles[worker.role]
     let selectRole = optionsRoles(worker.role)
     let selectStatus = optionsStatues(worker.isEnabled)
 
@@ -30,7 +31,7 @@ function buildRow(worker) {
         <td id="firstname${worker.id}">${worker.firstname}</td>
         <td id="lastname${worker.id}">${worker.lastname}</td>
         <td id="email${worker.id}">${worker.email}</td>
-        <td id="role${worker.id}">${worker.role}</td>
+        <td id="role${worker.id}">${role}</td>
         <td id="status${worker.id}">${status}</td>
         </tr>
 <div class="modal fade" id="workerModal${worker.id}" tabindex="-1" role="dialog" aria-labelledby="workerModal${worker.id}"
@@ -195,7 +196,7 @@ function editWorker(id) {
             document.getElementById(`firstname${id}`).innerText = firstname
             document.getElementById(`lastname${id}`).innerText = lastname
             document.getElementById(`email${id}`).innerText = email
-            document.getElementById(`role${id}`).innerText = role
+            document.getElementById(`role${id}`).innerText = roles[role]
             document.getElementById(`status${id}`).innerText = statues[status]
 
             let rolesSelection = optionsRoles(role)
