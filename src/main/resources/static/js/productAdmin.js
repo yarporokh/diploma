@@ -31,7 +31,7 @@ function buildRow(product) {
         <th scope="row">${product.id}</th>
         <td id="name${product.id}">${product.name}</td>
         <td id="description${product.id}">${product.description.substring(0, 11) + '...'}</td>
-        <td id="category${product.id}">${product.category}</td>
+        <td id="category${product.id}">${products[product.category]}</td>
         <td id="price${product.id}">${product.price.toFixed(2)}</td>
         <td id="quantity${product.id}">${product.quantity}</td>
         </tr>
@@ -175,7 +175,7 @@ function editProduct(id) {
         .then(() => {
             document.getElementById(`name${id}`).innerText = name
             document.getElementById(`description${id}`).innerText = description.substring(0, 11) + '...'
-            document.getElementById(`category${id}`).innerText = category
+            document.getElementById(`category${id}`).innerText = products[category]
             document.getElementById(`price${id}`).innerText = price
             document.getElementById(`quantity${id}`).innerText = quantity
 
