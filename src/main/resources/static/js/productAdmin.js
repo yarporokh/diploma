@@ -1,5 +1,14 @@
 let apiUrl = 'http://localhost:8080/api/v1/product';
 
+const products = {
+    "PROTEIN":"Протеїн",
+    "CREATINE":"Креатин",
+    "GAINER":"Гейнер",
+    "FATBURNER":"Жироспалювач",
+    "AMINOCYCLOTES":"Амінокислоти",
+    "PRETRAIN":"Предтренувальний комплекс"
+}
+
 getAll()
 
 function getAll() {
@@ -52,7 +61,7 @@ function buildRow(product) {
                     <br>
                     <label for="ecategory">Категорія</label>
                     <select name="ecategory" id="ecategory${product.id}">
-                        <option value="${product.category}">${product.category}</option>
+                        <option id="placeholderCategory${product.id}" value="${product.category}">${products[product.category]}</option>
                         <option value="PROTEIN">Протеїн</option>
                         <option value="CREATINE">Креатин</option>
                         <option value="GAINER">Гейнер</option>
@@ -169,6 +178,11 @@ function editProduct(id) {
             document.getElementById(`category${id}`).innerText = category
             document.getElementById(`price${id}`).innerText = price
             document.getElementById(`quantity${id}`).innerText = quantity
+
+            let placeholderCategory = document.getElementById(`placeholderCategory${id}`)
+            placeholderCategory.value = category
+            placeholderCategory.innerText = products[category]
+
             $(`#productModal${id}`).modal('hide');
         })
 }
