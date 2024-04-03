@@ -55,4 +55,16 @@ public class OrderService {
     public List<OrderItem> getOrderList() {
         return items;
     }
+
+    public void removeAllQuantityFromOrder(Long id) {
+        OrderItem existingItem = getItemByProductId(id);
+
+        items.remove(existingItem);
+    }
+
+    public OrderItem getItemByProductId(Long id) {
+        return  items.stream()
+                .filter(i -> i.getProduct().getId().equals(id))
+                .findFirst().get();
+    }
 }
