@@ -26,6 +26,8 @@ public class OrderService {
             OrderItem item = existingItem.get();
             if (item.getQuantity() < item.getProduct().getQuantity()) {
                 item.setQuantity(item.getQuantity() + 1);
+            } else {
+                throw new RuntimeException("Не вистачає продуктів на складі");
             }
         } else {
             Product product = productService.findById(id);
@@ -36,7 +38,6 @@ public class OrderService {
                     .build();
             items.add(item);
         }
-        System.out.println(items);
     }
 
     public void removeFromOrder(Long id) {
@@ -49,6 +50,9 @@ public class OrderService {
         } else {
             existingItem.setQuantity(existingItem.getQuantity() - 1);
         }
-        System.out.println(items);
+    }
+
+    public List<OrderItem> getOrderList() {
+        return items;
     }
 }
