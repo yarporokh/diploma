@@ -21,6 +21,11 @@ public class OrderController {
         return orderService.getOrderList();
     }
 
+    @GetMapping("/{id}")
+    public OrderItem getItemByProductId(@PathVariable("id") Long id) {
+        return orderService.getItemByProductId(id);
+    }
+
     @GetMapping("add/{id}")
     public void addToOrder(@PathVariable("id") Long id) {
         orderService.addToOrder(id);
@@ -29,5 +34,10 @@ public class OrderController {
     @GetMapping("remove/{id}")
     public void removeFromOrder(@PathVariable("id") Long id) {
         orderService.removeFromOrder(id);
+    }
+
+    @GetMapping("remove-all/{id}")
+    public void removeAllQuantityFromOrder(@PathVariable("id") Long id) {
+        orderService.removeAllQuantityFromOrder(id);
     }
 }
