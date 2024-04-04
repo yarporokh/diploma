@@ -18,6 +18,10 @@ function getAll() {
 }
 
 function buildCard(product) {
+    let dis = ''
+    if (product.quantity === 0) {
+        dis = 'disabled'
+    }
     return `<div class="col-md-4" id="${product.id}">
                             <div class="card mb-4">
                                 <div class="card-body">
@@ -25,7 +29,7 @@ function buildCard(product) {
                                         <h5 class="card-title">${product.name}</h5>
                                         </a>
                                         <p class="card-text">${product.price.toFixed(2)}₴</p>
-                                        <button onclick="addToOrder(${product.id})" type="submit" class="btn btn-primary">Додати до кошика</button>
+                                        <button onclick="addToOrder(${product.id})" type="submit" class="btn btn-primary" ${dis}>Додати до кошика</button>
                                     </div>
                             </div>
                         </div>`
