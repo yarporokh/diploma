@@ -29,10 +29,10 @@ public class ProductRestController {
         return productService.findByFilter(filter);
     }
 
-/*    @GetMapping("/category/{category}")
+    @GetMapping("/category/{category}")
     public List<Product> getByCategory(@PathVariable("category") Category category) {
         return productService.findByCategory(category);
-    }*/
+    }
 
     @PostMapping
     public void addNewProduct(@RequestBody Product product) {

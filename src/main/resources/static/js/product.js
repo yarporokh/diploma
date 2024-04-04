@@ -7,6 +7,7 @@ function getAll() {
         .then(response => response.json())
         .then(data => {
             const div = document.getElementById("row");
+            div.innerHTML = ''
             data.map(product => {
                 div.innerHTML += buildCard(product)
             })
@@ -14,7 +15,6 @@ function getAll() {
             getOrder()
         })
         .catch(error => console.error('Error fetching data:', error));
-
 }
 
 function buildCard(product) {
@@ -33,4 +33,19 @@ function buildCard(product) {
                                     </div>
                             </div>
                         </div>`
+}
+
+function findByCategory(category) {
+    fetch(`${apiUrl}/category/${category}`)
+        .then(response => response.json())
+        .then(data => {
+            const div = document.getElementById("row");
+            div.innerHTML = ''
+            data.map(product => {
+                div.innerHTML += buildCard(product)
+            })
+
+            getOrder()
+        })
+        .catch(error => console.error('Error fetching data:', error));
 }

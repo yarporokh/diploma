@@ -1,5 +1,6 @@
 package com.nau.shop.service;
 
+import com.nau.shop.model.Category;
 import com.nau.shop.model.Product;
 import com.nau.shop.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +18,9 @@ public class ProductService {
         return productRepository.findAll(sort);
     }
 
-//    public List<Product> findByCategory(Category category) {
-//        return productRepository.findProductByCategory(category);
-//    }
+    public List<Product> findByCategory(Category category) {
+        return productRepository.findProductsByCategory(category);
+    }
 
     public Product findById(Long id) {
         return productRepository.findProductById(id);

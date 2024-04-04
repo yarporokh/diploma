@@ -17,15 +17,17 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-3">
-            <h3>Categories</h3>
-            <ul>
-                <li>Category 1</li>
-                <li>Category 2</li>
-                <li>Category 3</li>
+            <h3>Пошук по фільтру</h3>
+            <ul class="list-unstyled">
+                <li><button class="btn btn-link" onclick="findByCategory('PROTEIN')">Протеїни</button></li>
+                <li><button class="btn btn-link" onclick="findByCategory('CREATINE')">Креатин</button></li>
+                <li><button class="btn btn-link" onclick="findByCategory('GAINER')">Гейнери</button></li>
+                <li><button class="btn btn-link" onclick="findByCategory('FATBURNER')">Жироспалювачі</button></li>
+                <li><button class="btn btn-link" onclick="findByCategory('AMINOCYCLOTES')">Амінокислоти</button></li>
+                <li><button class="btn btn-link" onclick="findByCategory('PRETRAIN')">Предтрени</button></li>
             </ul>
         </div>
         <div class="col-md-9" id="main">
-            <h2>My Products</h2>
             <div class="row" id="row">
             </div>
         </div>
