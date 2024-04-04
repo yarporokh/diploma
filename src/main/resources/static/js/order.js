@@ -58,6 +58,7 @@ function disableButtonForNull() {
 function removeRequest(id) {
     fetch(orderApiUrl + '/remove/' + id)
         .then(() => {
+            orderCounter()
             disableButtonForNull()
         })
         .catch(error => console.error('Error fetching data:', error))
@@ -68,6 +69,7 @@ function removeAllQuantityFromOrder(id) {
         .then(() => {
             var itemToRemove = document.getElementById(`cartProduct${id}`);
             itemToRemove.parentElement.removeChild(itemToRemove)
+            orderCounter()
             disableButtonForNull()
         })
         .catch(error => console.error('Error fetching data:', error))
@@ -86,6 +88,9 @@ function getOrder() {
             } else {
                 submitOrderButton.disabled = false
             }
+
+            orderCounter()
+
             data.forEach(p => {
                 const productId = p.product.id
                 const name = p.product.name
@@ -115,5 +120,19 @@ function getOrder() {
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
+        })
+}
+
+function orderCounter() {
+    var cartCounter = document.getElementById('cartCounter');
+
+    fetch(orderApiUrl)
+        .then(resp => resp.json())
+        .then(data => {
+            let count = 0
+            data.forEach(p => {
+                count += p.quantity
+            })
+            cartCounter.textContent = count
         })
 }
