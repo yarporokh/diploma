@@ -43,9 +43,22 @@ function removeFromOrder(id) {
     }
 }
 
+function disableButtonForNull() {
+    fetch(orderApiUrl)
+        .then(resp => resp.json())
+        .then(data => {
+            var submitOrderButton = document.getElementById("submitOrder")
+            if (data.length === 0) {
+                submitOrderButton.disabled = true
+            } else {
+                submitOrderButton.disabled = false
+            }
+        })
+}
 function removeRequest(id) {
     fetch(orderApiUrl + '/remove/' + id)
         .then(() => {
+            disableButtonForNull()
         })
         .catch(error => console.error('Error fetching data:', error))
 }
@@ -55,6 +68,7 @@ function removeAllQuantityFromOrder(id) {
         .then(() => {
             var itemToRemove = document.getElementById(`cartProduct${id}`);
             itemToRemove.parentElement.removeChild(itemToRemove)
+            disableButtonForNull()
         })
         .catch(error => console.error('Error fetching data:', error))
 }
@@ -66,13 +80,18 @@ function getOrder() {
     fetch(orderApiUrl)
         .then(resp => resp.json())
         .then(data => {
+            var submitOrderButton = document.getElementById("submitOrder")
+            if (data.length === 0) {
+                submitOrderButton.disabled = true
+            } else {
+                submitOrderButton.disabled = false
+            }
             data.forEach(p => {
                 const productId = p.product.id
                 const name = p.product.name
                 const quantity = p.quantity
                 const price = p.priceAtOrder
                 const fullPrice = (price * quantity).toFixed(2)
-                //todo: update add and delete
                 orderDiv.innerHTML +=
                     `<div id="cartProduct${productId}">
                         <div class="row mb-4 d-flex justify-content-between align-items-center">
