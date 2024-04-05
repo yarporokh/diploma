@@ -53,4 +53,8 @@ public class UserService {
     public List<User> findALlWorkersWithFilter(String filter) {
         return userRepository.findALlWorkersWithFilter(filter);
     }
+
+    public User findByEmail(String username) {
+        return userRepository.findByEmail(username);
+    }
 }

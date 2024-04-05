@@ -1,12 +1,10 @@
 package com.nau.shop.controller.rest;
 
 import com.nau.shop.model.OrderItem;
+import com.nau.shop.model.Receiver;
 import com.nau.shop.service.OrderService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,5 +42,10 @@ public class OrderRestController {
     @GetMapping("clear")
     public void clearOrder() {
         orderService.clear();
+    }
+
+    @PostMapping("save-order")
+    public void saveOrder(@RequestBody Receiver receiver) {
+        orderService.save(receiver);
     }
 }

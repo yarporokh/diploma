@@ -33,4 +33,9 @@ public class UserRestController {
     public void saveWorker(@RequestBody User user) {
         userService.saveEditedWorker(user);
     }
+
+    @GetMapping
+    public User getUserByUsername(String username) {
+        return userService.findByEmail(username);
+    }
 }

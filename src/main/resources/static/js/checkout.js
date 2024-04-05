@@ -10,6 +10,7 @@
                     event.preventDefault()
                     event.stopPropagation()
                 }
+                event.preventDefault()
                 form.classList.add('was-validated')
             }, false)
         })
@@ -53,4 +54,50 @@ function buildProductRow(product) {
                     <span class="text-muted">${fullPrice}₴</span>
                 </li>
     `
+}
+
+function confirmCheckout() {
+    let receiverFirstnameElement = document.getElementById("receiverFirstname")
+    let receiverLastnameElement = document.getElementById("receiverLastname")
+    let receiverEmailElement = document.getElementById("receiverEmail")
+    let receiverPhoneElement = document.getElementById("receiverPhone")
+    let receiverAddressElement = document.getElementById("receiverAddress")
+
+    let receiverFirstname = receiverFirstnameElement.value
+    let receiverLastname = receiverLastnameElement.value
+    let receiverEmail = receiverEmailElement.value
+    let receiverPhone = receiverPhoneElement.value
+    let receiverAddress = receiverAddressElement.value
+
+    if (receiverFirstname === '' ||
+        receiverLastname === '' ||
+        receiverEmail === '' ||
+        receiverAddress === '') {
+        return
+    }
+
+    const reqBody = {
+        receiverFirstname: receiverFirstname,
+        receiverLastname: receiverLastname,
+        receiverEmail: receiverEmail,
+        receiverPhone: receiverPhone,
+        receiverAddress: receiverAddress
+    }
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reqBody)
+    }
+
+    fetch(`${orderApiUrl}/save-order`, requestOptions)
+        .then(() => {
+            let btn = document.getElementById("confirmCheckoutButton")
+            btn.classList.remove('btn-primary')
+            btn.classList.add('btn-success')
+            btn.innerText = "Замовлення оформлено"
+            btn.disabled = true
+        })
 }

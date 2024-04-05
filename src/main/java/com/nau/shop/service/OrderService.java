@@ -1,9 +1,10 @@
 package com.nau.shop.service;
 
-import com.nau.shop.model.OrderItem;
-import com.nau.shop.model.Product;
+import com.nau.shop.model.*;
 import com.nau.shop.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -63,12 +64,32 @@ public class OrderService {
     }
 
     public OrderItem getItemByProductId(Long id) {
-        return  items.stream()
+        return items.stream()
                 .filter(i -> i.getProduct().getId().equals(id))
                 .findFirst().get();
     }
 
     public void clear() {
+        items.clear();
+    }
+
+    public void save(Receiver receiver) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        Order order = Order.builder()
+                .receiver(receiver)
+                .user((User) authentication.getPrincipal())
+                .items(items)
+                .build();
+        orderRepository.save(order);
+
+
+        //TODO: replace to admin\manager logic
+        items.forEach(item -> {
+            Product product = item.getProduct();
+            product.setQuantity(product.getQuantity() - item.getQuantity());
+            productService.save(product);
+        });
         items.clear();
     }
 }
