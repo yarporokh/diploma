@@ -25,7 +25,8 @@
                 </button>
             </li>
             <li class="nav-item">
-                <button data-toggle="modal" class="btn btn-link nav-link" data-target="#cartModal">Кошик <span id="cartCounter" class="counter">0</span>
+                <button data-toggle="modal" class="btn btn-link nav-link" data-target="#cartModal">Кошик <span
+                        id="cartCounter" class="counter">0</span>
                 </button>
             </li>
         </ul>
@@ -116,16 +117,18 @@
                     </button>
                 </div>
                 <div class="modal-body" id="cartView">
-                    </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Продовжити покупки
-                        </button>
-                        <button onclick="" type="submit" id="submitOrder" class="btn btn-primary">Оформити замовлення</button>
-                    </div>
                 </div>
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Продовжити покупки
+                    </button>
+                    <form action="checkout">
+                        <button type="submit" id="submitOrder" class="btn btn-primary">Оформити замовлення</button>
+                    </form>
+                </div>
             </div>
+
         </div>
+    </div>
 
     <div th:if="${isNew != null}">
         <div th:if="${isNew}">
