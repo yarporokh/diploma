@@ -54,7 +54,3 @@ function buildProductRow(product) {
                 </li>
     `
 }
-
-function clearCart() {
-    fetch(`${orderApiUrl}/clear`).then(r => r)
-}
