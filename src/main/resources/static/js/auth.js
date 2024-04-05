@@ -19,12 +19,18 @@
 function openRegisterModal() {
     $('#loginModal').modal('hide');
     $('#registerModal').modal('show');
+    removeValidity()
 }
 
 function openLoginModal() {
     $('#registerModal').modal('hide');
     $('#loginModal').modal('show');
+    removeValidity()
 }
 
-
-
+function removeValidity() {
+    var forms = document.getElementsByClassName('needs-validation');
+    Array.prototype.filter.call(forms, function (form) {
+        form.classList.remove('was-validated');
+    });
+}
