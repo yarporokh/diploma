@@ -43,31 +43,42 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form th:object="${registerBody}" th:action="@{/auth/registration}" method="post">
-                        <label for="firstname">Ім'я</label>
-                        <input type="text" required id="firstname" name="firstname"/>
+                    <form class="needs-validation" novalidate="" th:object="${registerBody}"
+                          th:action="@{/auth/registration}" method="post">
+                        <div class="mb-1">
+                            <label for="firstname">Ім'я</label>
+                            <input class="form-control" type="text" required="" id="firstname" name="firstname"/>
+                        </div>
                         <br>
-                        <label for="lastname">Прізвище</label>
-                        <input type="text" required id="lastname" name="lastname"/>
+                        <div class="mb-1">
+                            <label for="lastname">Прізвище</label>
+                            <input class="form-control" type="text" required="" id="lastname" name="lastname"/>
+                        </div>
                         <br>
-                        <label for="phone">Номер телефону</label>
-                        <input type="text" required id="phone" name="phone"/>
+                        <div class="mb-1">
+                            <label for="phone">Номер телефону</label>
+                            <input class="form-control" type="text" required="" id="phone" name="phone"/>
+                        </div>
                         <br>
-                        <label for="email">Електронна пошта</label>
-                        <input type="email" required id="email" name="email"/>
+                        <div class="mb-1">
+                            <label for="email">Електронна пошта</label>
+                            <input class="form-control" type="email" required="" id="email" name="email"/>
+                        </div>
                         <br>
-                        <label for="regPassword">Пароль</label>
-                        <input type="password" required id="regPassword" name="regPassword"/>
+                        <div class="mb-1">
+                            <label for="regPassword">Пароль</label>
+                            <input class="form-control" type="password" required="" id="regPassword"
+                                   name="regPassword"/>
+                        </div>
                         <br>
-                        <div id="err"></div>
                         <div class="modal-footer">
+                            <button onclick="openLoginModal()" data-toggle="modal" class="btn btn-link nav-link"
+                                    data-target="#loginModal">Авторизуватись
+                            </button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
                             <button type="submit" class="btn btn-primary">Зареєструватися</button>
                         </div>
                     </form>
-                    <button onclick="openLoginModal()" data-toggle="modal" class="btn btn-link nav-link"
-                            data-target="#loginModal">Авторизуватись
-                    </button>
                 </div>
 
             </div>
@@ -85,22 +96,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="/login">
+                    <form class="needs-validation" novalidate="" method="post" action="/login">
                         <label for="username">Електронна пошта</label>
-                        <input type="email" required id="username" name="username"/>
+                        <input class="form-control" type="email" required="" id="username" name="username"/>
                         <br>
                         <label for="password">Пароль</label>
-                        <input type="password" required id="password" name="password"/>
+                        <input class="form-control" type="password" required id="password" name="password"/>
                         <br>
                         <div id="logerr"></div>
                         <div class="modal-footer">
+                            <button onclick="openRegisterModal()" data-toggle="modal" class="btn btn-link nav-link"
+                                    data-target="#registerModal">Зареєструватися
+                            </button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
                             <button type="submit" class="btn btn-primary">Авторизуватись</button>
                         </div>
                     </form>
-                    <button onclick="openRegisterModal()" data-toggle="modal" class="btn btn-link nav-link"
-                            data-target="#registerModal">Зареєструватися
-                    </button>
                 </div>
             </div>
         </div>

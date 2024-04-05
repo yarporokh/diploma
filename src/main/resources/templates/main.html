@@ -35,6 +35,11 @@
 </div>
 </body>
 </html>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var m = /*[[${isNew}]]*/ 'default value';
+    /*]]>*/
+</script>
 <script type="text/javascript" th:src="@{/js/auth.js}" th:inline="javascript"></script>
 <script type="text/javascript" th:src="@{/js/product.js}" th:inline="javascript"></script>
 <script type="text/javascript" th:src="@{/js/order.js}" th:inline="javascript"></script>
