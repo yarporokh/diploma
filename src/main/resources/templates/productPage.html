@@ -20,8 +20,8 @@
         <div class="col-md-8">
             <h2 th:text="${product.name}"></h2>
             <p th:text="${product.description}"></p>
-            <p><strong>Ціна: </strong><span th:text="${product.price}"></span></p>
-            <button th:onclick="'addToOrder(' + ${product.id} + ')'" type="submit" class="btn btn-primary" ${dis}>Додати до кошика</button>
+            <p><strong>Ціна: </strong><span th:text="${product.price} + '₴'"></span></p>
+            <button th:onclick="'addToOrder(' + ${product.id} + ')'" type="submit" class="btn btn-primary" th:disabled="${product.quantity == 0}">Додати до кошика</button>
         </div>
     </div>
 </div>
