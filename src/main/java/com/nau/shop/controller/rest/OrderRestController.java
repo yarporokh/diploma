@@ -40,4 +40,9 @@ public class OrderRestController {
     public void removeAllQuantityFromOrder(@PathVariable("id") Long id) {
         orderService.removeAllQuantityFromOrder(id);
     }
+
+    @GetMapping("clear")
+    public void clearOrder() {
+        orderService.clear();
+    }
 }

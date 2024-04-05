@@ -67,4 +67,8 @@ public class OrderService {
                 .filter(i -> i.getProduct().getId().equals(id))
                 .findFirst().get();
     }
+
+    public void clear() {
+        items.clear();
+    }
 }
