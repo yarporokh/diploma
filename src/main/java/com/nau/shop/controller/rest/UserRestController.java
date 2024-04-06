@@ -2,6 +2,7 @@ package com.nau.shop.controller.rest;
 
 import com.nau.shop.dto.WorkerRegisterBody;
 import com.nau.shop.model.User;
+import com.nau.shop.model.UserCheckoutModel;
 import com.nau.shop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -37,5 +38,10 @@ public class UserRestController {
     @GetMapping
     public User getUserByUsername(String username) {
         return userService.findByEmail(username);
+    }
+
+    @GetMapping("current")
+    public UserCheckoutModel getCurrentUser() {
+        return userService.getCurrentUser();
     }
 }

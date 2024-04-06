@@ -8,4 +8,5 @@ import java.util.UUID;
 
 public interface PhoneRepository extends JpaRepository<Phone, UUID> {
     Optional<Phone> findByPhone(String phone);
+    Phone findPhoneById (UUID id);
 }

@@ -1,9 +1,14 @@
 package com.nau.shop.service;
 
 import com.nau.shop.dto.WorkerRegisterBody;
+import com.nau.shop.model.Phone;
 import com.nau.shop.model.User;
+import com.nau.shop.model.UserCheckoutModel;
+import com.nau.shop.repository.PhoneRepository;
 import com.nau.shop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +19,7 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final PhoneRepository phoneRepository;
 
     public List<User> findALlWorkers() {
         return userRepository.findALlWorkers();
@@ -56,5 +62,19 @@ public class UserService {
 
     public User findByEmail(String username) {
         return userRepository.findByEmail(username);
+    }
+
+    public UserCheckoutModel getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        Phone phone = phoneRepository.findPhoneById(user.getId());
+
+        UserCheckoutModel checkoutModel = UserCheckoutModel.builder()
+                .firstname(user.getFirstname())
+                .lastname(user.getLastname())
+                .email(user.getEmail())
+                .phone(phone.getPhone())
+                .build();
+        return checkoutModel;
     }
 }

@@ -38,6 +38,13 @@ async function getCart() {
                     <span>Загалом</span>
                     <strong id="fullPrice">${price.toFixed(2)}₴</strong>
                 </li>`
+
+    let logUser = await getCurrentUserInfo()
+
+    document.getElementById("receiverFirstname").value = logUser.firstname
+    document.getElementById("receiverLastname").value = logUser.lastname
+    document.getElementById("receiverEmail").value = logUser.email
+    document.getElementById("receiverPhone").value = logUser.phone
 }
 
 function buildProductRow(product) {
@@ -100,4 +107,12 @@ function confirmCheckout() {
             btn.innerText = "Замовлення оформлено"
             btn.disabled = true
         })
+}
+
+function getCurrentUserInfo() {
+    let userApi = 'http://localhost:8080/api/v1/user/current'
+
+    return fetch(userApi)
+        .then(resp => resp.json())
+
 }
