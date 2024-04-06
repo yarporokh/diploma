@@ -38,8 +38,8 @@ function buildRow(order) {
     const statusColor = statuesColor[order.status]
     let cards = buildOrderCards(order.items)
 
-    const closeOrderBtn = (order.status !== 'CANCELED' && order.status !== 'COMPLETED')
-        ? `<button onclick="closeOrder('${order.id}')" type="submit" class="btn btn-danger">Відмінити замовлення</button>`
+    const closeOrderBtn = (order.status !== 'CANCELLED' && order.status !== 'COMPLETED')
+        ? `<button onclick="closeOrder('${order.id}')" type="submit" class="btn btn-danger" id="closebtn${order.id}">Відмінити замовлення</button>`
         : ''
 
     return `<div class="card">
@@ -51,7 +51,7 @@ function buildRow(order) {
                             <div class="d-flex justify-content-between align-items-center">
             <h4 class="mb-0"><span class="mr-3"><strong>Ціна:</strong> ${price}₴</span></h4>
             <h4 class="mb-0"><span class="mr-3"><strong>Дата і час:</strong> ${time} ${date}</span></h4>
-            <h4 class="mb-0"><span><strong>Статус: <span class="${statusColor}" id="stauts${order.id}">${status}</span></strong></span>
+            <h4 class="mb-0"><span><strong>Статус: <span class="${statusColor}" id="status${order.id}">${status}</span></strong></span>
             ${closeOrderBtn}</h4>
         </div>
                 </h4>
@@ -88,12 +88,13 @@ function buildOrderCards(products) {
 }
 
 function closeOrder(id) {
-    console.log(id)
-    fetch(`${orderApiUrl}/v1/order/close-order/${id}`)
+    fetch(`${orderApiUrl}/close-order/${id}`)
         .then(() => {
+            console.log("HELLo")
             let statusElement = document.getElementById(`status${id}`)
-            statusElement.innerText = statues['CANCELLED']
+            statusElement.textContent = statues.CANCELLED
             statusElement.className = ""
-            statusElement.classList.add(statuesColor['CANCELLED'])
+            statusElement.classList.add(statuesColor.CANCELLED)
+            document.getElementById(`closebtn${id}`).remove()
         })
 }

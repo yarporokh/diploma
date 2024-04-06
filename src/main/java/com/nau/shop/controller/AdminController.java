@@ -18,4 +18,9 @@ public class AdminController {
     public String adminStaffPage() {
         return "adminStaff";
     }
+
+    @GetMapping("orders")
+    public String adminOrdersPage() {
+        return "adminOrders";
+    }
 }

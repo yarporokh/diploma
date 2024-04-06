@@ -115,5 +115,11 @@ public class OrderService {
         Order order = orderRepository.findOrderById(id);
         order.setStatus(Status.CANCELLED);
         orderRepository.save(order);
+
+        order.getItems().forEach(item -> {
+            Product product = item.getProduct();
+            product.setQuantity(product.getQuantity() + item.getQuantity());
+            productService.save(product);
+        });
     }
 }
