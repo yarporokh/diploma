@@ -1,5 +1,6 @@
 let orderApiUrl = 'http://localhost:8080/api/v1/order'
 
+getOrder()
 
 function addToOrder(id) {
     try {
