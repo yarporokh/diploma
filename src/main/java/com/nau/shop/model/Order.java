@@ -30,10 +30,14 @@ public class Order {
     private User user;
     @Embedded
     private Receiver receiver;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+    @OneToOne
+    private User manager;
+    private Double fullPrice;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private List<OrderItem> items = new ArrayList<>();
     @CreatedDate
     private LocalDateTime createdDate;
-
 }

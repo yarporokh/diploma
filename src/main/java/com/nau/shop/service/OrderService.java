@@ -2,6 +2,7 @@ package com.nau.shop.service;
 
 import com.nau.shop.model.*;
 import com.nau.shop.repository.OrderRepository;
+import com.nau.shop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +19,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final ProductService productService;
     private List<OrderItem> items = new ArrayList<>();
+    private final UserRepository userRepository;
 
     public void addToOrder(Long id) {
         Optional<OrderItem> existingItem = items.stream()
@@ -73,23 +76,37 @@ public class OrderService {
         items.clear();
     }
 
-    public void save(Receiver receiver) {
+    public void saveNewOrder(Receiver receiver) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        AtomicReference<Double> fullPrice = new AtomicReference<>(0.0d);
 
-        Order order = Order.builder()
-                .receiver(receiver)
-                .user((User) authentication.getPrincipal())
-                .items(items)
-                .build();
-        orderRepository.save(order);
-
-
-        //TODO: replace to admin\manager logic
         items.forEach(item -> {
             Product product = item.getProduct();
             product.setQuantity(product.getQuantity() - item.getQuantity());
             productService.save(product);
+            fullPrice.updateAndGet(v -> v + item.getQuantity().doubleValue() * item.getPriceAtOrder());
         });
+
+        Order order = Order.builder()
+                .receiver(receiver)
+                .user((User) authentication.getPrincipal())
+                .fullPrice(fullPrice.get())
+                .status(Status.NEW)
+                .items(items)
+                .build();
+        orderRepository.save(order);
+
         items.clear();
+    }
+
+    public void save(Order order) {
+        orderRepository.save(order);
+    }
+
+    public List<Order> getUserOrders() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+
+        return orderRepository.findOrdersByUserEmailOrderByCreatedDateDesc(user.getEmail());
     }
 }

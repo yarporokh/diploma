@@ -18,5 +18,5 @@ public class OrderItem {
     @ManyToOne
     private Product product;
     private Double priceAtOrder;
-    private int quantity;
+    private Integer quantity;
 }
