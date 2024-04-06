@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Service
@@ -108,5 +109,11 @@ public class OrderService {
         User user = (User) authentication.getPrincipal();
 
         return orderRepository.findOrdersByUserEmailOrderByCreatedDateDesc(user.getEmail());
+    }
+
+    public void closeOrder(UUID id) {
+        Order order = orderRepository.findOrderById(id);
+        order.setStatus(Status.CANCELLED);
+        orderRepository.save(order);
     }
 }

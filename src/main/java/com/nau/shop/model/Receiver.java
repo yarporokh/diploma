@@ -15,5 +15,6 @@ public class Receiver {
     private String receiverFirstname;
     private String receiverLastname;
     private String receiverPhone;
+    private String receiverEmail;
     private String receiverAddress;
 }

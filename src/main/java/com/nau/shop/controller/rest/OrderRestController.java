@@ -1,5 +1,6 @@
 package com.nau.shop.controller.rest;
 
+import com.nau.shop.model.Order;
 import com.nau.shop.model.OrderItem;
 import com.nau.shop.model.Receiver;
 import com.nau.shop.service.OrderService;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/order")
@@ -46,6 +48,16 @@ public class OrderRestController {
 
     @PostMapping("save-order")
     public void saveOrder(@RequestBody Receiver receiver) {
-        orderService.save(receiver);
+        orderService.saveNewOrder(receiver);
+    }
+
+    @GetMapping("user-orders")
+    public List<Order> getUserOrders() {
+        return orderService.getUserOrders();
+    }
+
+    @GetMapping("close-order/{id}")
+    public void closeOrder(@PathVariable("id") UUID id) {
+        orderService.closeOrder(id);
     }
 }
