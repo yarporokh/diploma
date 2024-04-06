@@ -3,7 +3,7 @@ package com.nau.shop.service;
 import com.nau.shop.dto.WorkerRegisterBody;
 import com.nau.shop.model.Phone;
 import com.nau.shop.model.User;
-import com.nau.shop.model.UserCheckoutModel;
+import com.nau.shop.dto.UserCheckoutModel;
 import com.nau.shop.repository.PhoneRepository;
 import com.nau.shop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

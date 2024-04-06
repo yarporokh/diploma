@@ -2,7 +2,7 @@ package com.nau.shop.controller.rest;
 
 import com.nau.shop.dto.WorkerRegisterBody;
 import com.nau.shop.model.User;
-import com.nau.shop.model.UserCheckoutModel;
+import com.nau.shop.dto.UserCheckoutModel;
 import com.nau.shop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
