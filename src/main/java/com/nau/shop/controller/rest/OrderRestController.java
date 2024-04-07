@@ -60,4 +60,19 @@ public class OrderRestController {
     public void closeOrder(@PathVariable("id") UUID id) {
         orderService.closeOrder(id);
     }
+
+    @GetMapping("all-orders")
+    public List<Order> getAllOrders() {
+        return orderService.findAll();
+    }
+
+    @GetMapping("user-order-info/{id}")
+    public Order getUserOrder(@PathVariable("id") UUID id) {
+        return orderService.getUserOrder(id);
+    }
+
+    @GetMapping("claim-order/{id}")
+    public void claimOrder(@PathVariable("id") UUID id) {
+        orderService.claimOrder(id);
+    }
 }

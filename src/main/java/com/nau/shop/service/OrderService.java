@@ -122,4 +122,26 @@ public class OrderService {
             productService.save(product);
         });
     }
+
+    public List<Order> findAll() {
+        return orderRepository.findAll();
+    }
+
+    public Order getUserOrder(UUID id) {
+        return orderRepository.findOrderById(id);
+    }
+
+    public void claimOrder(UUID id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        Order order = orderRepository.findOrderById(id);
+
+        if (order.getManager() != null) {
+            throw new RuntimeException("Менеджер вже назначений");
+        }
+
+        order.setManager(user);
+        order.setStatus(Status.PROCESSING);
+        orderRepository.save(order);
+    }
 }
