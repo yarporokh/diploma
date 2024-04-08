@@ -82,4 +82,9 @@
 </div>
 </body>
 </html>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var managerUsername = /*[[${#authentication.principal.email}]]*/ 'manager'
+    /*]]>*/
+</script>
 <script type="text/javascript" th:src="@{/js/staffAdmin.js}" th:inline="javascript"></script>

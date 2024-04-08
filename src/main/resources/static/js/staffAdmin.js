@@ -2,8 +2,6 @@ let apiUrl = 'http://localhost:8080/api/v1/user';
 const roles = {"MANAGER": "Менеджер", "ADMIN": "Адміністратор"}
 const statues = {false : "Відключений", true : "Активний"}
 
-//TODO: finish edit myself
-
 getAllStaff()
 
 function getAllStaff() {
@@ -25,6 +23,11 @@ function buildRow(worker) {
     let selectRole = optionsRoles(worker.role)
     let selectStatus = optionsStatues(worker.isEnabled)
 
+    let confirmBtn = ''
+
+    if (managerUsername !== worker.email) {
+        confirmBtn = `<button onclick="editWorker('${worker.id}')" type="submit" class="btn btn-primary">Замінити</button>`
+    }
 
     return `<tr id="${worker.id}" data-toggle="modal" data-target="#workerModal${worker.id}">
         <th scope="row">${worker.id}</th>
@@ -66,7 +69,7 @@ function buildRow(worker) {
                     <br>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
-                        <button onclick="editWorker('${worker.id}')" type="submit" class="btn btn-primary">Замінити</button>
+                        ${confirmBtn}
                     </div>
                 </div>
 
