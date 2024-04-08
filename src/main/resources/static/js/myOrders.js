@@ -30,9 +30,12 @@ async function findMyOrders() {
 }
 
 function buildRow(order) {
-    const dateTime = new Date(order.createdDate);
-    const date = dateTime.toISOString().split('T')[0];
-    const time = dateTime.toISOString().split('T')[1].split('.')[0];
+    const timeComponents = order.createdDate.split('T')[1].split('.')[0];
+    const [hours, minutes, seconds] = timeComponents.split(':');
+    const dateComponents = order.createdDate.split('T')[0];
+    const [year, month, day] = dateComponents.split('-');
+    const fullDate = `${hours}:${minutes}:${seconds} ${day}/${month}/${year}`
+
     const price = order.fullPrice.toFixed(2)
     const status = statues[order.status]
     const statusColor = statuesColor[order.status]
@@ -50,7 +53,7 @@ function buildRow(order) {
                     </button>
                             <div class="d-flex justify-content-between align-items-center">
             <h4 class="mb-0"><span class="mr-3"><strong>Ціна:</strong> ${price}₴</span></h4>
-            <h4 class="mb-0"><span class="mr-3"><strong>Дата і час:</strong> ${time} ${date}</span></h4>
+            <h4 class="mb-0"><span class="mr-3"><strong>Дата і час:</strong> ${fullDate}</span></h4>
             <h4 class="mb-0"><span><strong>Статус: <span class="${statusColor}" id="status${order.id}">${status}</span></strong></span>
             ${closeOrderBtn}</h4>
         </div>
