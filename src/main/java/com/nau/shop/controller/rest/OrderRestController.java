@@ -3,11 +3,13 @@ package com.nau.shop.controller.rest;
 import com.nau.shop.model.Order;
 import com.nau.shop.model.OrderItem;
 import com.nau.shop.model.Receiver;
+import com.nau.shop.model.Status;
 import com.nau.shop.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -79,5 +81,12 @@ public class OrderRestController {
     @GetMapping("filter/{filter}")
     public List<Order> claimOrder(@PathVariable("filter") String filter) {
         return orderService.findOrdersByFilterEmail(filter);
+    }
+
+    @PostMapping("change-status")
+    public void changeOrderStatus(@RequestBody Map<String, String> request) {
+        UUID id = UUID.fromString(request.get("id"));
+        Status status = Status.valueOf(request.get("status"));
+        orderService.changeOrderStatus(id, status);
     }
 }

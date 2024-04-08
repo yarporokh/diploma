@@ -46,6 +46,7 @@
             <p class="card-text"><strong>Статус:</strong> <span id="status"></span></p>
             <p class="card-text"><strong>Дата і час:</strong> <span id="datetime"></span></p>
             <p class="card-text"><strong>Менеджер:</strong> <span id="manager"></span></p>
+            <div id="managerButtons"></div>
         </div>
     </div>
 
@@ -66,6 +67,7 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
     var orderId = /*[[${orderId}]]*/ 'default value';
+    var managerUsername = /*[[${#authentication.principal.email}]]*/ 'manager'
     loadUserOrderManagementInfo(orderId)
     /*]]>*/
 </script>

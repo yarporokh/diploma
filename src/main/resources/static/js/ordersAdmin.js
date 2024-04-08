@@ -1,7 +1,7 @@
 const statues = {
     "NEW": "Новий",
     "PROCESSING": "Обробляється",
-    "SHIPPED": "Доставка",
+    "SHIPPED": "Доставлений",
     "CANCELLED": "Скасований",
     "COMPLETED": "Виконано"
 }
@@ -85,6 +85,7 @@ async function loadUserOrderManagementInfo(id) {
     receiverPhoneElement.innerText = order.receiver.receiverPhone
     fullOrderPriceElement.innerText = order.fullPrice.toFixed(2)
     statusElement.innerText = statues[order.status]
+    statusElement.className = ''
     statusElement.classList.add(statuesColor[order.status])
 
     const timeComponents = order.createdDate.split('T')[1].split('.')[0];
@@ -103,7 +104,20 @@ async function loadUserOrderManagementInfo(id) {
     } else {
         managerElement.innerText = `${order.manager.firstname} ${order.manager.lastname} - ${order.manager.email}`
     }
-//TODO: ADD buttons for each status
+
+    let managerButtonsDiv = document.getElementById('managerButtons')
+    managerButtonsDiv.innerHTML = ''
+
+    if ((order.manager !== null && order.manager.email === managerUsername) && order.status !== 'CANCELLED') {
+        if (order.status === 'PROCESSING') {
+            managerButtonsDiv.innerHTML += `<button class="btn btn-info ml-2" onclick="changeOrderStatus('${order.id}', 'SHIPPED')">Доставлений</button>`
+        }
+        if (order.status === 'PROCESSING' || order.status === 'SHIPPED') {
+            managerButtonsDiv.innerHTML += `<button class="btn btn-success ml-2" onclick="changeOrderStatus('${order.id}', 'COMPLETED')">Завершити</button>`
+            managerButtonsDiv.innerHTML += `<button class="btn btn-danger ml-2" onclick="changeOrderStatus('${order.id}', 'CANCELLED')">Відмінити</button>`
+        }
+    }
+
     productsElement.innerHTML = ''
     order.items.forEach(product => {
         productsElement.innerHTML += buildProductCards(product)
@@ -121,7 +135,6 @@ function buildProductCards(product) {
     return `
     <div class="col-md-4">
                     <div class="card">
-                        <img src="product1.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><strong>${name}</strong></h5>
                             <p class="card-text"><strong>Ціна при замовленні:</strong> ${price}</p>
@@ -159,4 +172,24 @@ function findOrdersByFilter() {
                 }
             )
     }
+}
+
+function changeOrderStatus(id, status) {
+    const reqBody = {
+        id: id,
+        status: status
+    }
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reqBody)
+    }
+
+    fetch(`${orderApiUrl}/change-status`, requestOptions)
+        .then(() => {
+            loadUserOrderManagementInfo(id)
+        })
 }

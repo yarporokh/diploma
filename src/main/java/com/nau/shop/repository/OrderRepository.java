@@ -10,6 +10,8 @@ import java.util.UUID;
 public interface OrderRepository extends JpaRepository<Order, UUID> {
     List<Order> findOrdersByUserEmailOrderByCreatedDateDesc(String email);
 
+    @Query("SELECT o FROM Order o ORDER BY o.createdDate DESC")
+    List<Order> findOrdersOrderByCreatedDateDesc();
     Order findOrderById(UUID id);
 
     @Query("SELECT o FROM Order o WHERE o.user.email LIKE concat('%', :filter, '%') ORDER BY o.createdDate DESC")

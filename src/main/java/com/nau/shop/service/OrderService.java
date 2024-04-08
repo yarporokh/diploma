@@ -125,7 +125,7 @@ public class OrderService {
     }
 
     public List<Order> findAll() {
-        return orderRepository.findAll();
+        return orderRepository.findOrdersOrderByCreatedDateDesc();
     }
 
     public Order getUserOrder(UUID id) {
@@ -151,5 +151,11 @@ public class OrderService {
         List<Order> filteredUserEmail = orderRepository.findOrdersByFilterUser(filter);
         List<Order> filteredManagerEmail = orderRepository.findOrdersByFilterManager(filter);
         return Stream.concat(filteredUserEmail.stream(), filteredManagerEmail.stream()).toList();
+    }
+
+    public void changeOrderStatus(UUID id, Status status) {
+        Order order = orderRepository.findOrderById(id);
+        order.setStatus(status);
+        orderRepository.save(order);
     }
 }
