@@ -49,7 +49,7 @@ function buildRow(order) {
         <th scope="row"><a href="http://localhost:8080/admin/user-order/${id}">${id}</a></th>
         <td>${customerEmail}</td>
         <td>${managerEmail}</td>
-        <td><span class="${statuesColor.status}">${status}</span></td>
+        <td><span class="${statuesColor[order.status]}">${status}</span></td>
         </tr>`
 }
 
