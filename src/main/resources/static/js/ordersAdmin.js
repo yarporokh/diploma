@@ -59,18 +59,19 @@ function getOrderById(id) {
 }
 
 async function loadUserOrderManagementInfo(id) {
-    let orderNumberElement= document.getElementById("orderNumber")
+    let orderNumberElement = document.getElementById("orderNumber")
 
-    let acctNameElement= document.getElementById("acctName")
-    let acctEmailElement= document.getElementById("acctEmail")
+    let acctNameElement = document.getElementById("acctName")
+    let acctEmailElement = document.getElementById("acctEmail")
 
-    let receiverNameElement= document.getElementById("receiverName")
-    let receiverEmailElement= document.getElementById("receiverEmail")
-    let receiverPhoneElement= document.getElementById("receiverPhone")
+    let receiverNameElement = document.getElementById("receiverName")
+    let receiverEmailElement = document.getElementById("receiverEmail")
+    let receiverPhoneElement = document.getElementById("receiverPhone")
 
-    let fullOrderPriceElement= document.getElementById("fullOrderPrice")
-    let statusElement= document.getElementById("status")
-    let managerElement= document.getElementById("manager")
+    let fullOrderPriceElement = document.getElementById("fullOrderPrice")
+    let statusElement = document.getElementById("status")
+    let datetimeElement = document.getElementById("datetime")
+    let managerElement = document.getElementById("manager")
 
     let productsElement = document.getElementById("products")
 
@@ -86,13 +87,20 @@ async function loadUserOrderManagementInfo(id) {
     statusElement.innerText = statues[order.status]
     statusElement.classList.add(statuesColor[order.status])
 
+    const timeComponents = order.createdDate.split('T')[1].split('.')[0];
+    const [hours, minutes, seconds] = timeComponents.split(':');
+    const dateComponents = order.createdDate.split('T')[0];
+    const [year, month, day] = dateComponents.split('-');
+    const fullDate = `${hours}:${minutes}:${seconds} ${day}/${month}/${year}`
+
+    datetimeElement.innerText = fullDate
+
     if (order.manager === null) {
         managerElement.innerText = `Відсутній`
         if (order.status === "NEW") {
             managerElement.innerHTML += `<button class="btn btn-warning ml-2" onclick="claimOrder('${order.id}')">Прийняти замовлення</button>`
         }
-    }
-    else {
+    } else {
         managerElement.innerText = `${order.manager.firstname} ${order.manager.lastname} - ${order.manager.email}`
     }
 //TODO: ADD buttons for each status
@@ -130,4 +138,25 @@ function claimOrder(id) {
         .then(() => {
             loadUserOrderManagementInfo(id)
         })
+}
+
+function findOrdersByFilter() {
+    const htmlFilter = document.getElementById('orderFilter');
+    const filter = htmlFilter.value
+
+    let tableElement = document.getElementById("ordersTable")
+    tableElement.innerHTML = ''
+
+    if (filter === '') {
+        buildOrdersTable()
+    } else {
+        fetch(`${orderApiUrl}/filter/${filter}`)
+            .then(resp => resp.json())
+            .then(orders => {
+                    orders.forEach(order => {
+                        tableElement.innerHTML += buildRow(order)
+                    })
+                }
+            )
+    }
 }

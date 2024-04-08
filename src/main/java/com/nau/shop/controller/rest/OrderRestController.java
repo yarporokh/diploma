@@ -75,4 +75,9 @@ public class OrderRestController {
     public void claimOrder(@PathVariable("id") UUID id) {
         orderService.claimOrder(id);
     }
+
+    @GetMapping("filter/{filter}")
+    public List<Order> claimOrder(@PathVariable("filter") String filter) {
+        return orderService.findOrdersByFilterEmail(filter);
+    }
 }

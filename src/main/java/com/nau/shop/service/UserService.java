@@ -68,12 +68,13 @@ public class UserService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
         Phone phone = phoneRepository.findPhoneById(user.getId());
+        String phoneNumber = phone != null ? phone.getPhone() : "";
 
         UserCheckoutModel checkoutModel = UserCheckoutModel.builder()
                 .firstname(user.getFirstname())
                 .lastname(user.getLastname())
                 .email(user.getEmail())
-                .phone(phone.getPhone())
+                .phone(phoneNumber)
                 .build();
         return checkoutModel;
     }

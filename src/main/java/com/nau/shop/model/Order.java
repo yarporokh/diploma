@@ -33,7 +33,7 @@ public class Order {
     private Receiver receiver;
     @Enumerated(EnumType.STRING)
     private Status status;
-    @OneToOne
+    @ManyToOne
     private User manager;
     private Double fullPrice;
     @OneToMany(cascade = CascadeType.ALL)

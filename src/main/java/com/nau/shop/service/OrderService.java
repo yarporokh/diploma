@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -143,5 +144,12 @@ public class OrderService {
         order.setManager(user);
         order.setStatus(Status.PROCESSING);
         orderRepository.save(order);
+    }
+
+
+    public List<Order> findOrdersByFilterEmail(String filter) {
+        List<Order> filteredUserEmail = orderRepository.findOrdersByFilterUser(filter);
+        List<Order> filteredManagerEmail = orderRepository.findOrdersByFilterManager(filter);
+        return Stream.concat(filteredUserEmail.stream(), filteredManagerEmail.stream()).toList();
     }
 }

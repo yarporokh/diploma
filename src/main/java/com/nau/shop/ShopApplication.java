@@ -1,9 +1,9 @@
 package com.nau.shop;
 
-import com.nau.shop.model.Category;
-import com.nau.shop.model.Product;
-import com.nau.shop.model.Role;
-import com.nau.shop.model.User;
+import com.nau.shop.model.*;
+import com.nau.shop.repository.OrderRepository;
+import com.nau.shop.repository.PhoneRepository;
+import com.nau.shop.repository.UserRepository;
 import com.nau.shop.service.ProductService;
 import com.nau.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,14 @@ public class ShopApplication implements CommandLineRunner {
     private UserService userService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PhoneRepository repository;
+    @Autowired
+    private OrderRepository orderRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PhoneRepository phoneRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(ShopApplication.class, args);
@@ -76,6 +84,15 @@ public class ShopApplication implements CommandLineRunner {
                 .password(passwordEncoder.encode("pass"))
                 .role(Role.ADMIN)
                 .isEnabled(false)
+                .build());
+
+        userService.save(User.builder()
+                .firstname("Ivan")
+                .lastname("Ivanov")
+                .email("qweqewa@aqweq.aeqw")
+                .password(passwordEncoder.encode("qweqewa@aqweq.aeqw"))
+                .role(Role.USER)
+                .isEnabled(true)
                 .build());
     }
 }

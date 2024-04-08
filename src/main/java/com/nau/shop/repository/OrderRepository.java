@@ -11,4 +11,11 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
     List<Order> findOrdersByUserEmailOrderByCreatedDateDesc(String email);
 
     Order findOrderById(UUID id);
+
+    @Query("SELECT o FROM Order o WHERE o.user.email LIKE concat('%', :filter, '%') ORDER BY o.createdDate DESC")
+    List<Order> findOrdersByFilterUser(String filter);
+
+    @Query("SELECT o FROM Order o WHERE o.manager.email LIKE concat('%', :filter, '%') ORDER BY o.createdDate DESC")
+    List<Order> findOrdersByFilterManager(String filter);
+
 }

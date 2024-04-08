@@ -17,6 +17,7 @@
 </head>
 <body>
 <div th:insert="~{navbar :: navbar}"></div>
+<input class="ml-2 mt-2" type="text" id="orderFilter" oninput="findOrdersByFilter()" placeholder="Пошук">
 <h1>Всі замовлення</h1>
 
 <table class="table table-hover">
