@@ -14,10 +14,34 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div th:insert="~{navbar :: navbar}"></div>
-<input class="ml-2 mt-2" type="text" id="orderFilter" oninput="findOrdersByFilter()" placeholder="Пошук">
+<div class="container mt-2">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" id="orderFilter" oninput="findOrdersByFilter()" placeholder="Пошук за ЕП">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#statusButtons" aria-expanded="false" aria-controls="statusButtons">
+                <i class="fa fa-sort-desc"></i>
+            </button>
+        </div>
+    </div>
+    <div class="collapse" id="statusButtons">
+        <div class="card card-body">
+            <ul class="list-unstyled">
+                <h3>Фільтрувати по статусу</h3>
+                <li><button class="btn btn-link" onclick="findOrdersByStatus('ALL')">Всі</button></li>
+                <li><button class="btn btn-link" onclick="findOrdersByStatus('NEW')">Новий</button></li>
+                <li><button class="btn btn-link" onclick="findOrdersByStatus('PROCESSING')">Обробляється</button></li>
+                <li><button class="btn btn-link" onclick="findOrdersByStatus('SHIPPED')">Доставлений</button></li>
+                <li><button class="btn btn-link" onclick="findOrdersByStatus('CANCELLED')">Скасований</button></li>
+                <li><button class="btn btn-link" onclick="findOrdersByStatus('COMPLETED')">Виконано</button></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <h1>Всі замовлення</h1>
 
 <table class="table table-hover">

@@ -1,6 +1,7 @@
 package com.nau.shop.repository;
 
 import com.nau.shop.model.Order;
+import com.nau.shop.model.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -19,5 +20,7 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
 
     @Query("SELECT o FROM Order o WHERE o.manager.email LIKE concat('%', :filter, '%') ORDER BY o.createdDate DESC")
     List<Order> findOrdersByFilterManager(String filter);
+
+    List<Order> findOrdersByStatusOrderByCreatedDateDesc(Status status);
 
 }

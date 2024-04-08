@@ -158,4 +158,8 @@ public class OrderService {
         order.setStatus(status);
         orderRepository.save(order);
     }
+
+    public List<Order> findOrdersByStatusFilter(Status status) {
+        return orderRepository.findOrdersByStatusOrderByCreatedDateDesc(status);
+    }
 }

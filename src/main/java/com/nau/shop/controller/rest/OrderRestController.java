@@ -79,8 +79,14 @@ public class OrderRestController {
     }
 
     @GetMapping("filter/{filter}")
-    public List<Order> claimOrder(@PathVariable("filter") String filter) {
+    public List<Order> getOrdersByEmailFilter(@PathVariable("filter") String filter) {
         return orderService.findOrdersByFilterEmail(filter);
+    }
+
+    @GetMapping("filter-by-status/{filter}")
+    public List<Order> getOrdersByStatusFilter(@PathVariable("filter") String filter) {
+        Status status = Status.valueOf(filter);
+        return orderService.findOrdersByStatusFilter(status);
     }
 
     @PostMapping("change-status")

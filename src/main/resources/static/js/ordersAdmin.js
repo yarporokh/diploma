@@ -193,3 +193,21 @@ function changeOrderStatus(id, status) {
             loadUserOrderManagementInfo(id)
         })
 }
+
+
+function findOrdersByStatus(status) {
+    let tableElement = document.getElementById("ordersTable")
+    tableElement.innerHTML = ''
+
+    if (status === 'ALL') {
+        buildOrdersTable()
+    } else {
+        fetch(`${orderApiUrl}/filter-by-status/${status}`)
+            .then(resp => resp.json())
+            .then(orders => {
+                orders.forEach(order => {
+                    tableElement.innerHTML += buildRow(order)
+                })
+            })
+    }
+}
