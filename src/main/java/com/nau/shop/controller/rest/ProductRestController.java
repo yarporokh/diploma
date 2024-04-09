@@ -4,6 +4,8 @@ import com.nau.shop.model.Category;
 import com.nau.shop.model.Product;
 import com.nau.shop.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,4 +41,9 @@ public class ProductRestController {
         productService.save(product);
     }
 
+    @GetMapping
+    public ResponseEntity<Page<Product>> getProductsPage(@RequestParam(value = "page", defaultValue = "0") int page,
+                                                         @RequestParam(value = "size", defaultValue = "12") int size) {
+        return ResponseEntity.ok().body(productService.getAllProducts(page, size));
+    }
 }

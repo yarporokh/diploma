@@ -4,6 +4,8 @@ import com.nau.shop.model.Category;
 import com.nau.shop.model.Product;
 import com.nau.shop.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +34,9 @@ public class ProductService {
 
     public List<Product> findByFilter(String filter) {
         return productRepository.findByFilter(filter);
+    }
+
+    public Page<Product> getAllProducts(int page, int size) {
+        return productRepository.findAll(PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id")));
     }
 }
