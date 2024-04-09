@@ -56,7 +56,7 @@ async function loadProductsPage(page) {
 
 function renderPagination(page, totalPages, visiblePages = 5) {
     let paginationContainer = document.getElementById('paginationContainer');
-    paginationContainer.innerHTML = ''; // Очищаем контейнер перед рендерингом новой пагинации
+    paginationContainer.innerHTML = '';
 
     let prevDisabled = page === 0 ? 'disabled' : '';
     let nextDisabled = page === totalPages - 1 ? 'disabled' : '';
