@@ -21,4 +21,5 @@ public class Product {
     private Category category;
     @PositiveOrZero
     private Integer quantity;
+    private String photoUrl;
 }

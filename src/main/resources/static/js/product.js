@@ -7,10 +7,13 @@ function buildCard(product) {
     if (product.quantity === 0) {
         dis = 'disabled'
     }
+    console.log(product)
+    console.log(product.photoUrl)
     return `<div class="col-md-4" id="${product.id}">
                             <div class="card mb-4">
+                            <img class="card-img-top" src="${product.photoUrl}" alt="${product.name}">
                                 <div class="card-body">
-                                <a class="product-link" href="http://localhost:8080/product/${product.id}">
+                                <a class="product-link" href="http://localhost:8080/api/v1/product/image/${product.id}">
                                         <h5 class="card-title">${product.name}</h5>
                                         </a>
                                         <p class="card-text">${product.price.toFixed(2)}₴</p>

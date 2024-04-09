@@ -70,6 +70,9 @@ function buildRow(product) {
                         <option value="PRETRAIN">Предтренувальний комплекс</option>
                     </select>
                     <br>
+                    <label for="photo">Оберіть фото</label>
+                    <input type="file" id="ephoto${product.id}">
+                    <button onclick="savePhoto(${product.id})" type="submit" class="btn btn-primary">Зберегти фото</button>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
                         <button onclick="editProduct(${product.id})" type="submit" class="btn btn-primary">Замінити</button>
@@ -130,6 +133,22 @@ function addNewProduct() {
             $('#addProductModal').modal('hide');
             getAll()
         })
+}
+
+function savePhoto(id) {
+    let htmlphoto = document.getElementById(`ephoto${id}`)
+    const file = htmlphoto.files[0];
+
+    const formData = new FormData();
+    formData.append('id', id);
+    formData.append('photo', file);
+
+    let reqBody = {
+        method: 'POST',
+        body: formData
+    }
+
+    fetch(`${apiUrl}/upload-photo`, reqBody)
 }
 
 function editProduct(id) {
