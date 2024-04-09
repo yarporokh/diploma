@@ -1,22 +1,6 @@
 let apiUrl = 'http://localhost:8080/api/v1/product';
 
-// getAll()
 loadProductsPage(0)
-
-function getAll() {
-    fetch(apiUrl + '/all')
-        .then(response => response.json())
-        .then(data => {
-            const div = document.getElementById("row");
-            div.innerHTML = ''
-            data.map(product => {
-                div.innerHTML += buildCard(product)
-            })
-
-            getOrder()
-        })
-        .catch(error => console.error('Error fetching data:', error));
-}
 
 function buildCard(product) {
     let dis = ''
