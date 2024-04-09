@@ -62,7 +62,6 @@ public class ProductRestController {
 
     @GetMapping(value = "/image/{filename}", produces = {IMAGE_PNG_VALUE, IMAGE_JPEG_VALUE})
     public byte[] getPhoto(@PathVariable("filename") String filename) throws IOException {
-        System.out.println(filename);
         return Files.readAllBytes(Paths.get(PHOTO_DIRECTORY + filename));
     }
 }
