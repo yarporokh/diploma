@@ -78,6 +78,8 @@ function buildOrderCards(products) {
 
     products.forEach(product => {
         cards += `<div class="card" id="${product.id}">
+                        <div class="row">
+                            <div class="col-md-6">
                                 <div class="card-body">
                                 <a class="product-link" href="http://localhost:8080/product/${product.id}">
                                         <h5 class="card-title">${product.product.name}</h5>
@@ -85,7 +87,12 @@ function buildOrderCards(products) {
                                         <p class="card-text"><strong>Ціна:</strong> ${product.priceAtOrder}₴</p>
                                         <p class="card-text"><strong>Кількість:</strong> ${product.quantity}</p>
                                     </div>
-                            </div>`
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="${product.product.photoUrl}" class="img-thumbnail" alt="${product.name}">
+                            </div>
+                        </div>`
     })
     return cards;
 }
@@ -93,7 +100,6 @@ function buildOrderCards(products) {
 function closeOrder(id) {
     fetch(`${orderApiUrl}/close-order/${id}`)
         .then(() => {
-            console.log("HELLo")
             let statusElement = document.getElementById(`status${id}`)
             statusElement.textContent = statues.CANCELLED
             statusElement.className = ""

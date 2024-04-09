@@ -70,6 +70,7 @@ function buildRow(product) {
                         <option value="PRETRAIN">Предтренувальний комплекс</option>
                     </select>
                     <br>
+                    <img src="${product.photoUrl}" alt="${product.name}" class="img-thumbnail">
                     <label for="photo">Оберіть фото</label>
                     <input type="file" id="ephoto${product.id}">
                     <button onclick="savePhoto(${product.id})" type="submit" class="btn btn-primary">Зберегти фото</button>

@@ -130,11 +130,13 @@ function buildProductCards(product) {
     let quantity = product.quantity
     let price = product.priceAtOrder
     let fullProductPrice = (price * quantity).toFixed(2)
+    let photoUrl = product.product.photoUrl
 
 
     return `
     <div class="col-md-4">
                     <div class="card">
+                    <img class="card-img-top" src="${photoUrl}" alt="${name}">
                         <div class="card-body">
                             <h5 class="card-title"><strong>${name}</strong></h5>
                             <p class="card-text"><strong>Ціна при замовленні:</strong> ${price}</p>

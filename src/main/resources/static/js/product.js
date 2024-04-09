@@ -7,8 +7,7 @@ function buildCard(product) {
     if (product.quantity === 0) {
         dis = 'disabled'
     }
-    console.log(product)
-    console.log(product.photoUrl)
+
     return `<div class="col-md-4" id="${product.id}">
                             <div class="card mb-4">
                             <img class="card-img-top" src="${product.photoUrl}" alt="${product.name}">
@@ -45,7 +44,6 @@ function getProductsPageList(page = 0, size = 12) {
 
 async function loadProductsPage(page) {
     let productsOnPage = await getProductsPageList(page)
-    console.log(productsOnPage)
 
     const div = document.getElementById("row");
     div.innerHTML = ''
