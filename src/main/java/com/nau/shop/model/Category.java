@@ -11,7 +11,10 @@ public enum Category {
     GAINER("Гейнер"),
     FATBURNER("Жироспалювач"),
     AMINOCYCLOTES("Амінокислоти"),
-    PRETRAIN("Предтренувальний комплекс");
+    PRETRAIN("Предтренувальний комплекс"),
+    VITAMINS("Вітаміни"),
+    ENERGETIC("Енергетик"),
+    TESTOBUSTER("Тестостерон бустер");
 
     private final String value;
 }

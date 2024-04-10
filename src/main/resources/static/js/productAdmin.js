@@ -6,7 +6,10 @@ const products = {
     "GAINER":"Гейнер",
     "FATBURNER":"Жироспалювач",
     "AMINOCYCLOTES":"Амінокислоти",
-    "PRETRAIN":"Предтренувальний комплекс"
+    "PRETRAIN":"Предтренувальний комплекс",
+    "VITAMINS": "Вітаміни",
+    "ENERGETIC": "Енергетик",
+    "TESTOBUSTER": "Бустер тестостерону"
 }
 
 getAll()
@@ -68,6 +71,10 @@ function buildRow(product) {
                         <option value="FATBURNER">Жироспалювач</option>
                         <option value="AMINOCYCLOTES">Амінокислоти</option>
                         <option value="PRETRAIN">Предтренувальний комплекс</option>
+                        <option value="FATBURNER">Жироспалювач</option>
+                        <option value="VITAMINS">Вітаміни</option>
+                        <option value="ENERGETIC">Енергетик</option>
+                        <option value="TESTOBUSTER">Бустер тестостерону</option>
                     </select>
                     <br>
                     <img src="${product.photoUrl}" alt="${product.name}" class="img-thumbnail">
