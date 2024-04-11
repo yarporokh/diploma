@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div th:insert="~{navbar :: navbar}"></div>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-5">Доставка і оплата</h1>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Самовивіз з магазину в Києві</h3>
+      <p>Ви можете забрати товар самостійно з нашого магазину за адресою:</p>
+      <p>вул. Мокра, 7</p>
+      <p>Понеділок - Неділя: 10:00 - 19:00</p>
+    </div>
+    <div class="col-md-4">
+      <h3>Доставка кур'єром по Києву</h3>
+      <p>Кур'єр доставить товар прямо до вашого дому протягом 1-2 робочих днів.</p>
+      <p>Вартість доставки: 100 грн</p>
+      <p>Доставка здійснюється по всьому місту.</p>
+    </div>
+    <div class="col-md-4">
+      <h3>Доставка по Україні</h3>
+      <p>Ми відправимо товар вам в інше місто наступного дня після оплати.</p>
+      <p>Вартість доставки залежить умов перевезника.</p>
+      <p>Для отримання детальної інформації про вартість і терміни доставки, будь ласка, зв'яжіться з нам.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" th:src="@{/js/order.js}" th:inline="javascript"></script>
+<script type="text/javascript" th:src="@{/js/auth.js}" th:inline="javascript"></script>

@@ -29,4 +29,13 @@ public class MainController {
         return "contactPage";
     }
 
+    @GetMapping("shipping-and-payment")
+    public String getShippingAndPaymentPage() {
+        return "shippingAndPaymentPage";
+    }
+
+    @GetMapping("return-and-exchange")
+    public String getReturnAndExchangePage() {
+        return "returnAndExchangePage";
+    }
 }
