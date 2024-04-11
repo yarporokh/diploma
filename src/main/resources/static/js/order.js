@@ -14,7 +14,18 @@ function addToOrder(id) {
             .then(data => {
                 getOrder()
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => {
+                Toastify({
+                    text: "Не вдалось додати продукт",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    stopOnFocus: true,
+                    style: {
+                        background: "rgba(255, 99, 71, 1)",
+                    }
+                }).showToast();
+            });
     } catch (error) {
         console.log("ERROR")
     }
