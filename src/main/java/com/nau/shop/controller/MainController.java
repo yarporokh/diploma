@@ -24,4 +24,9 @@ public class MainController {
         return "main";
     }
 
+    @GetMapping("contacts")
+    public String getContactPage() {
+        return "contactPage";
+    }
+
 }
