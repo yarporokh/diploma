@@ -38,6 +38,11 @@
                 <a class="nav-link" href="/cabinet/orders">Мої замовлення</a>
             </li>
         </ul>
+        <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Вихід</a>
+            </li>
+        </ul>
     </div>
 
     <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal"
@@ -146,15 +151,6 @@
                 </div>
             </div>
 
-        </div>
-    </div>
-
-    <div th:if="${isNew != null}">
-        <div th:if="${isNew}">
-            <p>Welcome to our website! Please proceed with your registration.</p>
-        </div>
-        <div th:unless="${isNew}">
-            <p>User is already registered.</p>
         </div>
     </div>
 </nav>
