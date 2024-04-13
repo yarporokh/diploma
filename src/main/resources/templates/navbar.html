@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-
-</head>
-<body>
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark" xmlns:sec="http://www.w3.org/1999/xhtml">
     <a class="navbar-brand" href="/">SHOP</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,24 +17,24 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/staff">Адмін - персонал</a>
+                <a class="nav-link" href="/admin/staff" sec:authorize="hasAuthority('ADMIN')">Керування персоналом</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/products">Адмін - продукт</a>
+                <a class="nav-link" href="/admin/products" sec:authorize="hasAuthority('ADMIN')">Список родуктів</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/orders">Адмін - Всі замовлення</a>
+                <a class="nav-link" href="/admin/orders" sec:authorize="hasAnyAuthority({'ADMIN', 'MANAGER'})">Всі замовлення</a>
             </li>
             <li class="nav-item" sec:authorize="isAnonymous()">
                 <button data-toggle="modal" class="btn btn-link nav-link" data-target="#registerModal">Зареєструватися
                 </button>
             </li>
-            <li class="nav-item">
-                <button data-toggle="modal" class="btn btn-link nav-link" data-target="#cartModal">Кошик <span
+            <li class="nav-item" sec:authorize="not hasAuthority('ADMIN')">
+                <button data-toggle="modal" class="btn btn-link nav-link" data-target="#cartModal">Кошик<span
                         id="cartCounter" class="badge badge-success">0</span>
                 </button>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasAuthority('USER')">
                 <a class="nav-link" href="/cabinet/orders">Мої замовлення</a>
             </li>
         </ul>
@@ -166,5 +158,3 @@
         </div>
     </div>
 </nav>
-</body>
-</html>
