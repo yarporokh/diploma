@@ -21,6 +21,21 @@
 <body>
 
 <div th:insert="~{navbar :: navbar}"></div>
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" class="form-control" id="search-input" oninput="performSearch()" placeholder="Пошук">
+            </div>
+                <ul id="search-results" class="list-group mt-2">
+
+                </ul>
+        </div>
+    </div>
+</div>
+
+
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-3">
@@ -51,7 +66,8 @@
                     <button class="btn btn-link" onclick="findByCategory('ENERGETIC')">Енергетики</button>
                 </li>
                 <li>
-                    <button class="btn btn-link" onclick="findByCategory('TESTOBUSTER')">Бустери тестостерону</button>
+                    <button class="btn btn-link" onclick="findByCategory('TESTOBUSTER')">Бустери тестостерону
+                    </button>
                 </li>
             </ul>
         </div>

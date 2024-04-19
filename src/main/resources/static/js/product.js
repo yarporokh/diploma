@@ -101,3 +101,30 @@ function renderPagination(page, totalPages, visiblePages = 5) {
 
     paginationContainer.innerHTML = paginationHTML;
 }
+
+function performSearch() {
+    const filter = document.getElementById('search-input').value;
+
+    if (filter.length > 0) {
+        fetch(`${apiUrl}/filter/${filter}`)
+    .then(response => response.json())
+            .then(data => {
+                displaySearchResults(data)
+            });
+    } else {
+        displaySearchResults([])
+    }
+}
+
+function displaySearchResults(products) {
+    const resultsContainer = document.getElementById('search-results')
+    resultsContainer.innerHTML = '';
+
+    if (products.length > 0) {
+        products.forEach(product => {
+            resultsContainer.innerHTML += `<li class="list-group-item">
+                                                <a class="product-link" href="http://localhost:8080/product/${product.id}">${product.name}<br/>${product.price.toFixed(2)}₴</a>
+                                            </li>`
+        });
+    }
+}
