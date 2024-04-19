@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Shop</title>
@@ -16,13 +16,13 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-4">
-            <img src="https://via.placeholder.com/300" class="img-fluid" alt="Изображение продукта">
+            <img th:src="${product.photoUrl}" width="300px" height="300px" class="img-fluid" th:alt="${product.name}">
         </div>
         <div class="col-md-8">
             <h2 th:text="${product.name}"></h2>
             <p th:text="${product.description}"></p>
             <p><strong>Ціна: </strong><span th:text="${product.price} + '₴'"></span></p>
-            <button th:onclick="'addToOrder(' + ${product.id} + ')'" type="submit" class="btn btn-primary" th:disabled="${product.quantity == 0}">Додати до кошика</button>
+            <button sec:authorize="hasAuthority('USER') or isAnonymous()" th:onclick="'addToOrder(' + ${product.id} + ')'" type="submit" class="btn btn-primary" th:disabled="${product.quantity == 0}">Додати до кошика</button>
         </div>
     </div>
 </div>

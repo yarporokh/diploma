@@ -8,15 +8,20 @@ function buildCard(product) {
         dis = 'disabled'
     }
 
+    let addToCartBtn = ""
+    if (userPrincipal.role === undefined || userPrincipal.role === "USER") {
+        addToCartBtn = `<button onclick="addToOrder(${product.id})" type="submit" class="btn btn-primary" ${dis}>Додати до кошика</button>`
+    }
+
     return `<div class="col-md-4" id="${product.id}">
                             <div class="card mb-4">
-                            <img class="card-img-top" src="${product.photoUrl}" alt="${product.name}">
+                            <img class="card-img-top" width="250px" height="175px" src="${product.photoUrl}" alt="${product.name}">
                                 <div class="card-body">
-                                <a class="product-link" href="http://localhost:8080/api/v1/product/image/${product.id}">
+                                <a class="product-link" href="http://localhost:8080/product/${product.id}">
                                         <h5 class="card-title">${product.name}</h5>
                                         </a>
                                         <p class="card-text">${product.price.toFixed(2)}₴</p>
-                                        <button onclick="addToOrder(${product.id})" type="submit" class="btn btn-primary" ${dis}>Додати до кошика</button>
+                                        ${addToCartBtn}
                                     </div>
                             </div>
                         </div>`

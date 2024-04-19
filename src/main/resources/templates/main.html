@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Shop</title>
@@ -72,6 +72,7 @@
     /*<![CDATA[*/
     var m = /*[[${isNew}]]*/ 'default value';
     /*]]>*/
+    var userPrincipal = /*[[${#authentication.principal}]]*/ 'GUEST';
     if (m === false) {
         Toastify({
             text: "Електронна пошта вже зайнята",

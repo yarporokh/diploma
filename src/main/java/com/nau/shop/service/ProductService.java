@@ -25,7 +25,7 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
-    public static final String PHOTO_DIRECTORY = System.getProperty("user.home") + "/Загрузки/uploads/";
+    public static final String PHOTO_DIRECTORY = System.getProperty("user.home") + "/Downloads/uploads/";
 
     public List<Product> findAll() {
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
@@ -41,6 +41,10 @@ public class ProductService {
     }
 
     public void save(Product product) {
+        if (product.getId() != null) {
+            Product p = productRepository.findProductById(product.getId());
+            product.setPhotoUrl(p.getPhotoUrl());
+        }
         productRepository.save(product);
     }
 
