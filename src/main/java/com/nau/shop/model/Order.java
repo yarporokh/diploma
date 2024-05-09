@@ -1,5 +1,7 @@
 package com.nau.shop.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,9 +38,9 @@ public class Order {
     @ManyToOne
     private User manager;
     private Double fullPrice;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id")
-    private List<OrderItem> items = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+    @JsonManagedReference
+    private List<OrderItem> items;
     @CreatedDate
     private LocalDateTime createdDate;
 }

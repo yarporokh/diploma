@@ -98,8 +98,9 @@ public class OrderService {
                 .status(Status.NEW)
                 .items(items)
                 .build();
-        orderRepository.save(order);
-
+        Order savedOrder = orderRepository.save(order);
+        savedOrder.getItems().forEach(item -> item.setOrder(savedOrder));
+        orderRepository.save(savedOrder);
         items.clear();
     }
 
