@@ -120,7 +120,6 @@ async function loadUserOrderManagementInfo(id) {
 
     productsElement.innerHTML = ''
     order.items.forEach(product => {
-        console.log(product)
         productsElement.innerHTML += buildProductCards(product)
     })
 
